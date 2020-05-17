@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Autocomplete - Javascript</title>
+    <style>
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .images-block {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .autocomplete {
+            margin-top: 50px;
+        }
+        .autocomplete img {
+            margin-right: 30px;
+            margin-bottom: 30px;
+        }
+        .image-search {
+            margin: 0 auto;
+            background-color: transparent;
+            border: 1px solid gray;
+            width: 50%;
+            border-radius: 20px;
+            padding: 0;
+            color: rgba(0,0,0,.87);
+            word-wrap: break-word;
+            outline: none;
+            display: flex;
+            flex: 100%;
+            -webkit-tap-highlight-color: transparent;
+            height: 51px;
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <div class="images-block">
+            <h1>Search your favorite images</h1>
+            <input type="text" auto name="search" id="search-image" class="image-search" autocomplete="off" placeholder="Enter atleast 3 letters">
+            <div class="autocomplete role="listbox" id="autocomplete"></div>
+        </div>
+    </div>
+  </body>
+  <script type="module" src="./app.js"></script>
+</html>
