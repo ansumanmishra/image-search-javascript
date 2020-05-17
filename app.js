@@ -1,2 +1,2 @@
-import autocomplete from './autocomplete.js';
+import autocomplete from './search-image.js';
 autocomplete();

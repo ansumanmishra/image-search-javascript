@@ -3,8 +3,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Autocomplete - Javascript</title>
+    <title>Search Images</title>
     <style>
+        body {
+            background-color: black;
+        }
         .container {
             width: 90%;
             margin: 0 auto;
@@ -13,6 +16,10 @@
             text-align: center;
             margin-top: 100px;
         }
+        h1 {
+            color: deeppink;
+            font-family: cursive;
+        }
         .autocomplete {
             margin-top: 50px;
         }
@@ -20,14 +27,18 @@
             margin-right: 30px;
             margin-bottom: 30px;
         }
-        .image-search {
+        img {
+            border: 1px solid white;
+            cursor: pointer;
+        }
+        .search-image {
             margin: 0 auto;
             background-color: transparent;
-            border: 1px solid gray;
-            width: 50%;
+            border: 1px solid white;
+            color: white;
+            width: 100%;
             border-radius: 20px;
             padding: 0;
-            color: rgba(0,0,0,.87);
             word-wrap: break-word;
             outline: none;
             display: flex;
@@ -37,13 +48,36 @@
             font-size: 16px;
             padding: 10px;
         }
+        .preview-image-block {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .image-form-block {
+            position: relative;
+            width: 50%;
+            margin: 0 auto;
+        }
+        #recording {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            border: none;
+        }
     </style>
   </head>
   <body>
+      <div class="preview-image-block"></div>
       <div class="container">
           <div class="images-block">
             <h1>Search your favorite images</h1>
-            <input type="text" auto name="search" id="search-image" class="image-search" autocomplete="off" placeholder="Enter atleast 3 letters">
+            <div class="image-form-block">
+                <form>
+                    <img id="recording" src="http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/Studio-Mic-icon.png" width="25" height="25" />
+                    <input type="text" auto name="search" id="search-image" class="search-image" autocomplete="off" placeholder="Enter atleast 3 letters" />
+                </form>
+            </div>
             <div class="autocomplete role="listbox" id="autocomplete"></div>
         </div>
     </div>
