@@ -1,8 +1,13 @@
 const API_KEY = '16580982-7c36966d80d6c17534a760e75';
+const URL = `https://pixabay.com/api/?key=${API_KEY}&q=`;
 const searchForm = document.querySelector('form');
 const autocompleteBlock = document.querySelector('#autocomplete');
 const previewImageBlock = document.querySelector('.preview-image-block');
-const URL = `https://pixabay.com/api/?key=${API_KEY}&q=`;
+const recordingMessage = document.querySelector('#recording-message');
+const searchImage = document.querySelector('#search-image');
+
+// Initiallly hide the recording message
+hideRecordingMessage();
 
 export default function autocomplete() {
   document
@@ -62,21 +67,40 @@ async function loadImages(keyword) {
 
 function startRecording() {
   if (window.hasOwnProperty('webkitSpeechRecognition')) {
+    showRecordingMessage();
     const recognition = new webkitSpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.lang = 'en-US';
     recognition.start();
 
+    // Stop recording automatically after 5 secs
+    setInterval(() => {
+      stopRecording(recognition);
+    }, 10000);
+
     recognition.onresult = function(e) {
+      stopRecording(recognition);
       const transcript = e.results[0][0].transcript;
-      document.querySelector('#search-image').value = transcript;
-      recognition.stop();
+      searchImage.value = transcript;
       loadImages(transcript);
     };
 
     recognition.onerror = function(e) {
-      recognition.stop();
+      stopRecording(recognition);
     };
   }
+}
+
+function stopRecording(recognition) {
+  recognition.stop();
+  hideRecordingMessage();
+}
+
+function showRecordingMessage() {
+  recordingMessage.style.display = 'block';
+}
+
+function hideRecordingMessage() {
+  recordingMessage.style.display = 'none';
 }
